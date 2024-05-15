@@ -32,7 +32,6 @@ pypng==0.20220715.0
 python-lsp-jsonrpc==1.0.0
 queuelib==1.5.0
 SQLAlchemy==2.0.29
-TBB==0.2
 watchdog==4.0.0
 webencodings==0.5.1
 Werkzeug==3.0.2
