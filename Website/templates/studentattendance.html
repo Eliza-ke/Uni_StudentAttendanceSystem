@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css') }}">   
+    <title>Attendance Record</title>
+</head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+<body>
+  <div class="bg-slate-50 h-screen">
+  <div>
+    <ul class="bg-violet-50 m-0 list-none overflow-hidden">
+        <li class="float-left"><a href="/student/profile" class="navi">Your Profile</a></li>
+        <li class="float-left"><a href="/student/attendance" class="navi">Attendance</a></li>
+        <li class="float-right"><a href="/student/logout" class="navi">Logout</a></li>
+    </ul>
+    <div id="toastContainer"></div>
+  </div>
+    <div class="flex flex-col justify-center items-center">
+    <div class="mx-auto max-w-3xl mt-20 w-full bg-white p-10 rounded-md shadow-lg">
+          <h2 class="text-3xl font-semibold text-center">Attendance Record</h2>
+
+          <form name="form" id="attendanceForm">
+            <input type="hidden" name="yearid" id="yearid" value="{{user.year}}">
+            <div class="max-w-screen-xl p-5 mx-auto mt-5 grid grid-cols-2 gap-4">
+              <div>
+                <p class="pl-5 text-gray-700 font-medium my-6">Name</p>
+                <p class="pl-5 text-gray-700 font-medium my-6">Class</p>
+                <p class="pl-5 text-gray-700 font-medium my-6">Batch</p>
+                <p class="pl-5 text-gray-700 font-medium my-6">Date</p>
+                <p class="pl-5 text-gray-700 font-medium my-6">Period</p>
+                <div class="flex flex-row mt-8 mb-4">
+                  <input type="radio" class="ml-4 mr-2 my-3" id="present" name="status" value="present">
+                  <label for="present" class="mr-3 my-3">Present</label>
+                </div>
+              </div>
+
+              <div>
+                <p class="text-gray-700 font-medium my-6">{{ user.name}}</p>
+                <p class="text-gray-700 font-medium my-6">{{ years[user.year] }}</p>
+                <p class="text-gray-700 font-medium my-6">{{ user.batch}}</p>
+                <p class="text-gray-700 font-medium my-6">{{ current_date }}</p>
+
+                <select class="block bg-white my-4 p-2 text-sm border border-gray-300 max-w-72  rounded-md shadow-sm focus:outline-none focus:border-purple-500" name="period" id="period">
+                  <option value="">Select Period TimeTable</option>
+                  {% for period in periods %}
+                  <option value="{{ period.id }}">{{ period.period_name }} ( {{ period.period_time}} )</option>
+                  {% endfor %}
+                </select>
+
+                <div class="flex flex-row mb-3">
+                  <input type="radio" class="mx-2 my-3" id="absent" name="status" value="absent">
+                  <label for="absent" class="mr-3 my-3">Absent</label>
+                </div>
+                <div id="letterbox" class="letterbox mt-3">
+                  <div class="flex">
+                    <textarea class="border border-gray-300 px-3 py-2 rounded w-full focus:outline-none focus:border-blue-800" placeholder="write your leave letter" id="leaveletter"></textarea>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+            <div class="flex justify-center mb-2">
+              <button type="submit" class="bg-purple-500 text-white px-4 py-2 rounded-3xl hover:bg-purple-600 focus:outline-none focus:bg-purple-600" id="btnshowtoast">Submit</button>
+            </div>
+            </form>
+      </div>
+    </div>
+  </div>
+</div>
+    <script type="text/javascript" src="{{ url_for('static', filename='javascript/attendance.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='javascript/index.js') }}"></script>
+  </body>
+</html>  

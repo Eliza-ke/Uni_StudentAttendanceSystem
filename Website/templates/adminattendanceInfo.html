@@ -1,0 +1,52 @@
+{% extends "adminlayout.html" %} {% block title %}Student Information{% endblock%} 
+{% block content %}
+  
+  <div class="m-10 flex flex-col justify-center items-center bg-white">
+ 
+  <h3 class="text-2xl font-semibold mt-5 mb-10 text-center">All Attendances</h3>
+
+  <div class="flex flex-row justify-center">
+    <select class="block h-10 px-2 border border-purple-400 text-purple-700 mx-3 p-2 rounded focus:outline-none focus:border-purple-800" name="year" id="year">
+      <option value="">Class</option>
+      {% for allyear in allyears %}
+      <option value="/adminattendancefilterbyYear/{{ allyear.id }}" {% if allyear.year_name == student_year %} selected {% endif %}>{{ allyear.year_name }}</option>
+      {% endfor %}
+    </select>
+    <a href="/adminattendanceInfo" class="mx-3 p-2 h-10 bg-purple-500 text-white rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600">All</a>
+
+    <form id="dateForm" class="mx-3" method="POST">
+      <input type="date" value="{{ datevalue }}" onchange="this.form.submit()" class="border border-purple-400 text-purple-700 p-2 rounded w-full focus:outline-none focus:border-purple-800" id="customdate" name="customdate">
+    </form>
+
+    <a href="/notLoginedStudent" class="h-10 p-2 ml-3 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 focus:outline-none focus:bg-yellow-600">No logined Student</a>
+  </div>
+  <table class="text-center mx-16 my-10 shadow-md">
+    <thead class="bg-violet-50 text-lg font-semibold">
+      <tr>
+        <th class=" py-3 px-5">Student Name</th>
+        <th class=" py-3 px-5">Class</th>
+        <th class=" py-3 px-5">Date</th>
+        <th class=" py-3 px-5">Period</th>
+        <th class=" py-3 px-5">Status</th>
+        <th class=" py-3 px-5">leave letter</th>
+
+      </tr>
+    </thead>
+    <tbody id="student-table-body">
+        {% for attendance in attendances %}
+        <tr>
+            <td class=" p-3">{{ students[attendance.student_id]}}</td>
+            <td class=" p-3"> {{ years[attendance.year_id] }} </td>
+            <td class=" p-3">{{ attendance.date }}</td>
+            <td class=" p-3">{{ period[attendance.period_id] }}</td>
+            <td class=" p-3 font-semibold {% if attendance.status == 'absent' %} text-red-500 {% else %} text-green-600 {% endif %}">{{ attendance.status }}</td>
+            <td class=" p-3">{{ attendance.leave_letter }}</td>
+        </tr>
+        {% endfor %}
+        
+    </tbody>
+  </table>
+</div>
+
+
+{% endblock %}

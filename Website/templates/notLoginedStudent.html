@@ -1,0 +1,45 @@
+{% extends "adminlayout.html" %} {% block title %}Student Information{% endblock%} 
+{% block content %}
+<div class="m-10 flex flex-col justify-center items-center bg-white">
+    <h3 class="mt- text-2xl font-semibold mb-10 text-center">Student who are not logined for today</h3>
+
+    <select class="block h-10 px-2 bg-white border border-violet-400 rounded-md shadow-sm focus:outline-none focus:border-violet-500" name="year" id="year">
+      <option value="">Class</option>
+      <option value="/notLoginedStudent">All</option>
+      {% for allyear in allyears %}
+      <option value="/notLoginedStudentbyYear/{{ allyear.id }}" {% if allyear.year_name == selectedyear %} selected {% endif %} >{{ allyear.year_name }}</option>
+      {% endfor %}
+    </select>
+
+
+  <table class="text-center mx-16 my-10 shadow-md">
+    <thead class="bg-violet-50 text-lg font-semibold">
+      <tr>
+        <th class="py-3 px-5">Student Name</th>
+        <th class="py-3 px-5">Class</th>
+        <th class="py-3 px-5" rowspan="3">Period</th>
+        <th class="py-3 px-5" rowspan="3">Status</th>
+      </tr>
+    </thead>
+    <tbody id="student-table-body">
+        {% for eachstudent, periods in students.items() %}
+        <tr>
+            <td class="p-3 student-name">{{ eachstudent.name }}</td>
+            <td class="p-3"> {{years[eachstudent.year]}} </td>          
+            <td class="p-3 student-name">
+                {% for period_name in periods %}
+                    {{ period_name }} <br>
+                {% endfor %}
+            </td>
+            <td class="p-3">
+                <a href="/setAbsent?id={{eachstudent.id }}&yearid={{eachstudent.year}}" class="bg-violet-500 text-white text-xs px-4 py-2 rounded-3xl hover:bg-violet-400 focus:outline-none focus:bg-violet-400" data-item-id="2">
+                  Set Absent</a>
+            </td>
+        </tr>
+          {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+
+{% endblock %}

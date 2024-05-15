@@ -1,0 +1,38 @@
+{% extends "adminlayout.html" %} {% block title %} Faculty Information {% endblock%} 
+{% block content %}
+
+<div id="toastContainer"></div>
+<div class="m-10 flex flex-col justify-center items-center bg-white">
+<h3 class="mt-5 text-2xl font-semibold mb-5 text-center">Faculty Information</h3>
+  <div>
+  <table class="text-center mx-16 my-10 shadow-md">
+    <thead class="bg-violet-50 text-lg font-semibold">
+        <tr>
+            <th class="py-3 px-5">Profile</th>
+            <th class="py-3 px-5">Name</th>
+            <th class="py-3 px-5">Email</th>
+            <th class="py-3 px-5">Phone</th>
+            <th class="py-3 px-5">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for admin in admins %}
+        <tr>
+            <td class="p-3">
+                <img class=" w-24 h-24 object-cover p-2" style="border-radius:23px" src="{{ url_for('static', filename='images/' + admin.profile) }}" alt="user photo">
+            </td>
+            <td class="p-3">{{ admin.name }}</td>
+            <td class="p-3">{{ admin.email }}</td>
+            <td class="p-3">{{ admin.phone }}</td>
+            <td class="p-3">
+                <a href="/deletefacultyInfo/{{ admin.id }}" class="text-red-600 hover:scale-110 hover:text-red-400" data-item-id="2">
+                <i class="fas fa-trash-alt"></i></a>
+              </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+    
+</div>
+{% endblock %}

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css') }}">   
+    <title>{% block title %}{% endblock %}</title>
+</head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+<body>
+
+  <div class="flex flex-col justify-center items-center h-screen bg-white my-auto shadow-md">
+      <div class="box-content p-2">
+        <img src="{{ url_for('static', filename='images/welcome_uni.jpg') }}" alt="welcome Image" class="rounded-full h-40 w-40">
+      </div>
+      <div class="p-6 text-center">
+        <div class="text-3xl uppercase text-violet-600 font-semibold" style="letter-spacing: 5px;">Info Myanmar University</div>
+        <p class="text-gray-700 mb-12">Record your Attendance</p>
+        <button id="myBtnLogin" class="px-4 py-2 rounded-3xl transition ease-in-out delay-100 bg-purple-500 text-white hover:-translate-y-1 hover:scale-110 hover:bg-purple-600 duration-200">Login</button>
+        <button id="myBtn" class="ml-2 px-4 py-2 rounded-3xl transition ease-in-out delay-100 bg-purple-500 text-white hover:-translate-y-1 hover:scale-110 hover:bg-purple-600 duration-200">Register</button>
+      </div>
+    </div>
+
+
+    <!-- register -->
+  <div id="myModal" class="modal">
+    <div class="mx-auto max-w-lg my-10 w-full bg-white p-8 rounded-md"> 
+      <button class="close">&times;</button>
+        <h2 class="text-2xl font-semibold mb-10 text-center">Create an Account</h2>
+            <form id="registerForm">
+              <div class="mb-3">
+                <label for="email" class="text-gray-700 font-medium mb-2">Email</label>
+                <input
+                  type="email"
+                  class="border border-gray-300 px-3 py-2 rounded w-full focus:outline-none focus:border-blue-800"
+                  id="email"
+                  name="email"
+                  placeholder="email"
+                />
+              </div>
+
+                <div class="mb-3">
+                  <label for="name" class="text-gray-700 font-medium mb-2">Name</label>
+                  <input
+                    type="text"
+                    class="border border-gray-300 px-3 py-2 rounded w-full focus:outline-none focus:border-blue-800"
+                    id="name"
+                    name="name"
+                    placeholder="name"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label class="pl-5 text-gray-700 font-medium mr-6 mb-2 clear-left" for="year" >Year</label>
+                  <select class="block bg-white w-full border border-gray-300 px-3 py-2 rounded-md shadow-sm focus:outline-none focus:border-purple-500" name="year" id="year">
+                    {% for year in years %}
+                    <option value="{{ year.id }}">{{ year.year_name}}</option>
+                    {% endfor %}
+                  </select>
+
+                </div>
+                <div class="mb-3">
+                  <label for="batch" class="text-gray-700 font-medium mb-2">Batch</label>
+                  <input
+                    type="text"
+                    class="border border-gray-300 px-3 py-2 rounded w-full focus:outline-none focus:border-blue-800"
+                    id="batch"
+                    name="batch"
+                    placeholder="batch"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="phone" class="text-gray-700 font-medium mb-2">Phone Number</label>
+                  <input
+                    type="text"
+                    class="border border-gray-300 px-3 py-2 rounded w-full focus:outline-none focus:border-blue-800"
+                    id="phone"
+                    name="phone"
+                    placeholder="phone number"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="password1" class="text-gray-700 font-medium mb-2">Password</label>
+                  <input
+                    type="password"
+                    class="border border-gray-300 px-3 py-2 rounded w-full focus:outline-none focus:border-blue-800"
+                    id="password1"
+                    name="password1"
+                    placeholder="password"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="password2" class="text-gray-700 font-medium mb-2">Confirm Password</label>
+                  <input
+                    type="password"
+                    class="border border-gray-300 px-3 py-2 rounded w-full focus:outline-none focus:border-blue-800"
+                    id="password2"
+                    name="password2"
+                    placeholder="please retype your password"
+                  />
+                </div>
+            <button type="submit" class="bg-purple-500 text-white mt-4 px-4 py-2 rounded-3xl hover:bg-purple-600 focus:outline-none focus:bg-purple-600">Register</button>
+        </form>
+    </div>
+</div>
+
+<!-- student login -->
+<div id="myModal2" class="modal2">
+  <div class="mx-auto max-w-lg my-40 w-full bg-white p-8 rounded-md">
+    <button class="close2">&times;</button>
+      <h2 class="text-2xl font-semibold text-center">Login Your Account</h2>
+      <div class="p-3 max-w-sm mb-5 flex items-center" id="showErrorContainer"></div>
+        <form id="loginForm">
+            <div class="mb-3">
+              <label for="emailogin" class="text-gray-700 font-medium mb-2">Email</label>
+              <input
+                type="email"
+                class="border border-gray-300 px-3 py-2 rounded w-full focus:outline-none focus:border-blue-800"
+                id="emailogin"
+                name="emailogin"
+                placeholder="email"
+              />
+            </div>
+
+            <div class="mb-3">
+                <label for="password1" class="text-gray-700 font-medium mb-2">Password</label>
+                <input
+                  type="password"
+                  class="border border-gray-300 px-3 py-2 rounded w-full focus:outline-none focus:border-blue-800"
+                  id="passwordlogin"
+                  name="passwordlogin"
+                  placeholder="password"
+                />
+            </div>
+            <button type="submit" class="bg-purple-500 text-white mt-4 px-4 py-2 rounded-3xl hover:bg-purple-600 focus:outline-none focus:bg-purple-600">Login</button>
+        </form>
+  </div>
+</div>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='javascript/authenticate.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='javascript/index.js') }}"></script>
+  </body>
+</html>

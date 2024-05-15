@@ -1,0 +1,69 @@
+{% extends "adminlayout.html" %} {% block title %}Student Information{% endblock%} 
+{% block content %}
+
+<div class="m-10 flex justify-center items-center bg-white">
+
+<div class="my-10 flex flex-col justify-center items-center">
+  <h3 class="mt-5 text-2xl font-semibold mb-10 text-center">{{ student.name }}'s Attendances</h3>
+
+  <div class="flex flex-col md:flex-row items-center">
+    <a href="/eachAttendance/{{ student.id }}" class="mx-3 p-2 h-10 bg-purple-500 text-white rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600">All</a>
+    <a href="/filterbyToday/{{ student.id }}" class="mx-3 p-2 h-10 bg-purple-500 text-white rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600">Today</a>
+
+    <form id="dateForm" class="mx-3" method="POST">
+      <input type="date" value="{{ datevalue }}" onchange="this.form.submit()" class="border border-purple-400 text-purple-700 p-2 rounded w-full focus:outline-none focus:border-purple-800" id="customdate" name="customdate">
+    </form>
+  </div>
+
+
+  <table class="text-center mx-16 my-10 shadow-md">
+    <thead class="bg-violet-50 text-lg font-semibold">
+      <tr>
+        <th class="py-3 px-5">Class</th>
+        <th class="py-3 px-5">Date</th>
+        <th class="py-3 px-5">Period</th>
+        <th class="py-3 px-5">Status</th>
+        <th class="py-3 px-5">leave letter</th>
+
+      </tr>
+    </thead>
+    <tbody id="student-table-body">
+          {% for attendance in attendances: %}
+          <tr>
+            <td class="p-3">{{ years[attendance.year_id] }}</td>
+            <td class="p-3">{{ attendance.date }}</td>
+            <td class="p-3">{{ period[attendance.period_id] }}</td>
+            <td class="p-3 font-semibold {% if attendance.status == 'absent' %} text-red-500 {% else %} text-green-600 {% endif %}">{{ attendance.status }}</td>
+            <td class="p-3">{{ attendance.leave_letter }}</td>
+            
+          </tr>
+          {% endfor %}
+    </tbody>
+  </table> 
+</div>
+  <div class="mx-10 my-20" style="width:300px">
+    <canvas id="piechart"></canvas>
+  </div>
+</div>
+
+<script>
+  var ctx = document.getElementById('piechart');
+  const statuslabelarr = {{ statuslabels | tojson }};
+
+  var myChart = new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+          labels: statuslabelarr,
+          datasets: [{
+              label: 'Attendances',
+              data: {{ statusvalues }},
+              backgroundColor: [
+              'rgb(34 197 94)',
+              'rgb(244 63 94)',
+              ], 
+             hoverOffset: 4
+          }]
+      },
+  });
+</script>
+{% endblock %}

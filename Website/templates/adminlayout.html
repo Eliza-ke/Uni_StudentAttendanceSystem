@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='css/index.css') }}"
+    />
+    <!-- Font Awesome -->
+    
+
+    <title>{% block title %}{% endblock %}</title>
+  </head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <body>
+    <div id="mySidenav" class="sidenav bg-violet-900 pt-1 text-white text-center">
+      <div class="px-3 py-4" style="border-bottom: 1px solid rgba(255, 255, 255, 0.504)">
+        <div class="float-left ">
+          <img class="w-10 h-10 rounded-full object-cover" src="{{ url_for('static', filename='images/' + session.get('admin')['admin_profile']) }}" alt="user photo">
+        </div>
+        <div>
+          <div class="flex flex-col"> 
+            <p class="text-md">{{ session.get('admin')['admin_name'] }}</p>
+            <p class="text-xs">{{ session.get('admin')['admin_email'] }}</p>
+          </div>
+        </div>
+      </div>
+      <a href="/adminDashboard">Dashboard</a>
+      {% if session.get('admin')['admin_rolecode'] == 'S1001' %}
+        <a href="/adminfacultyInfo">Faculty Info</a>
+      {% endif %}
+      <a href="/adminstudentInfo">Student Info</a>
+      <a href="/adminyearInfo">Class</a>
+      <a href="/adminperiodInfo">Period</a>
+      <a href="/adminattendanceInfo">Attendance</a>
+    </div>
+
+    <div id="main" class="bg-slate-50">
+      <div class="top-0 w-full sticky">
+        <ul class="p-1 bg-violet-900 text-white flex justify-between items-center list-none overflow-hidden">
+          <div>
+          <li class="mx-2 text-white flex flex-row justify-center items-center">
+            <div class="px-2"> 
+              <i class="fa-solid fa-bars text-lg cursor-pointer hover:text-slate-200 transition" onclick="ToggleNav()"></i>
+            </div>
+            <div class="px-2">
+              <h3 class="my-2 text-md font-semibold">Info Myanmar University</h3>
+            </div>
+          </li>
+        </div>
+        <div>
+          <li class="mx-2"> 
+            <button id="dropdownHoverButton" data-dropdown-toggle="dropdownHover" data-dropdown-trigger="hover" class="text-white hover:text-violet-50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-violet-600 dark:hover:bg-violet-700 " type="button">
+              <img class="w-8 h-8 mx-2 rounded-full object-cover" src="{{ url_for('static', filename='images/' + session.get('admin')['admin_profile']) }}" alt="user photo">
+                <p class="text-sm">
+                  {% if session.get('admin')['admin_rolecode'] == 'S1001' %}
+                  System Admin
+                  {% else %}
+                  Faculty
+                  {% endif %}
+                </p>
+              </button>
+
+              <div id="dropdownHover" class="z-10 hidden bg-slate-50 divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                  <ul class="py-2 text-sm text-black dark:text-gray-200" aria-labelledby="dropdownHoverButton">
+                    <li>
+                      <a href="/adminProfile" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Profile</a>
+                    </li>
+                  
+                    <li>
+                      <a href="/signout" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sign out</a>
+                    </li>
+                  </ul>
+              </div>
+          </li>
+        </div>
+        </ul>
+      </div>
+        {% block content %} {% endblock %}
+      </div>
+
+    <script src="https://kit.fontawesome.com/17311876a1.js" crossorigin="anonymous"></script>
+    <script
+      type="text/javascript"
+      src="{{ url_for('static', filename='javascript/searchInfo.js') }}"
+    ></script>
+    <script
+      type="text/javascript"
+      src="{{ url_for('static', filename='javascript/yearInfo.js') }}"
+    ></script>
+    <script
+      type="text/javascript"
+      src="{{ url_for('static', filename='javascript/periodInfo.js') }}"
+    ></script>
+    <script
+    type="text/javascript"
+    src="{{ url_for('static', filename='javascript/index.js') }}"
+    ></script>
+    <script
+      type="text/javascript"
+      src="{{ url_for('static', filename='javascript/adminprofile.js') }}"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+
+  </body>
+</html>
