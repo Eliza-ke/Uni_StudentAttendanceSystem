@@ -4,9 +4,6 @@ backports.weakref==1.0.post1
 blinker==1.7.0
 brotlipy==0.7.0
 click==8.1.7
-clyent==1.2.2
-conda-repo-cli==1.0.75
-conda-verify==3.4.2
 constantly==15.1.0
 cssselect==1.1.0
 daal4py==2023.1.1
