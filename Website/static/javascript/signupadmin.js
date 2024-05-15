@@ -1,14 +1,14 @@
-var facultybtn = document.getElementById("faculty")
-var systemAdminbtn = document.getElementById("system_admin")
-var codebox = document.getElementById("codebox")
+// var facultybtn = document.getElementById("faculty")
+// var systemAdminbtn = document.getElementById("system_admin")
+// var codebox = document.getElementById("codebox")
 
-systemAdminbtn.onclick = function (){
-    codebox.style.display = "block";
-}
+// systemAdminbtn.onclick = function (){
+//     codebox.style.display = "block";
+// }
 
-facultybtn.onclick = function (){
-    codebox.style.display = "none";
-}
+// facultybtn.onclick = function (){
+//     codebox.style.display = "none";
+// }
 
 $(document).ready(function(){
     // sign up

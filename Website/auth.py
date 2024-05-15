@@ -100,11 +100,12 @@ def adminsignup():
             return jsonify(success=False, message='Phone number must be greater than 5')
         elif password1 != password2:
             return jsonify(success=False, message='Password does not match')
+        elif len(rolecode) < 1:
+            return jsonify(success=False, message='Please fill rolecode')
         elif len(password1) < 7:
             return jsonify(success=False, message='Password must be greater than 7')
         else:
-            if not rolecode:
-                rolecode = "F1001" # faculty code
+            if rolecode == "F1001":
                 profileImg = "defaultprofile.png" # default image
                 new_admin = Admin(email=email, name=name, phone=phone, password=generate_password_hash(password1, method='pbkdf2:sha256'), roleCode=rolecode, profile=profileImg)
                 db.session.add(new_admin)
@@ -121,26 +122,24 @@ def adminsignup():
                 session['admin'] = myadmin
 
                 return jsonify(success=True, redirect=url_for('adminStudentInfo'))
-            if rolecode:
-                if rolecode == "S1001": #system admin code
-                    profileImg = "defaultprofile.png"
-                    new_admin = Admin(email=email, name=name, phone=phone, password=generate_password_hash(password1, method='pbkdf2:sha256'), roleCode=rolecode, profile=profileImg)
-                    db.session.add(new_admin)
-                    db.session.commit()
-                    admin = Admin.query.filter_by(email=email).first()
-                    myadmin = {
-                        "admin_id": admin.id,
-                        "admin_name": admin.name,
-                        "admin_email": admin.email,
-                        "admin_profile": admin.profile,
-                        "admin_rolecode": admin.roleCode,
-                    }
-                    session['admin_id'] = admin.id
-                    session['admin'] = myadmin
 
-                    flash("Created Successfully", category='success')
-                    
-                    return jsonify(success=True, redirect=url_for('adminStudentInfo'))
+            elif rolecode == "S1001": #system admin code
+                profileImg = "defaultprofile.png"
+                new_admin = Admin(email=email, name=name, phone=phone, password=generate_password_hash(password1, method='pbkdf2:sha256'), roleCode=rolecode, profile=profileImg)
+                db.session.add(new_admin)
+                db.session.commit()
+                admin = Admin.query.filter_by(email=email).first()
+                myadmin = {
+                    "admin_id": admin.id,
+                    "admin_name": admin.name,
+                    "admin_email": admin.email,
+                    "admin_profile": admin.profile,
+                    "admin_rolecode": admin.roleCode,
+                }
+                session['admin_id'] = admin.id
+                session['admin'] = myadmin
+  
+                return jsonify(success=True, redirect=url_for('adminStudentInfo'))
             else:
                 return jsonify(success= False, message='Incorrect role code')
                 
