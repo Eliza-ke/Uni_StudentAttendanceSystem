@@ -1,12 +1,12 @@
 {% extends "adminlayout.html" %} {% block title %}Student Information{% endblock%} 
 {% block content %}
 
-<div class="m-10 flex justify-center items-center bg-white">
+<div class="m-10 p-5 flex flex-col justify-center items-center bg-white overflow-x-auto">
 
 <div class="my-10 flex flex-col justify-center items-center">
   <h3 class="mt-5 text-2xl font-semibold mb-10 text-center">{{ student.name }}'s Attendances</h3>
 
-  <div class="flex flex-col md:flex-row items-center">
+  <div class="mb-10 flex flex-col md:flex-row items-center">
     <a href="/eachAttendance/{{ student.id }}" class="mx-3 p-2 h-10 bg-purple-500 text-white rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600">All</a>
     <a href="/filterbyToday/{{ student.id }}" class="mx-3 p-2 h-10 bg-purple-500 text-white rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600">Today</a>
 
@@ -16,7 +16,7 @@
   </div>
 
 
-  <table class="text-center mx-16 my-10 shadow-md">
+  <table class="text-center shadow-md">
     <thead class="bg-violet-50 text-lg font-semibold">
       <tr>
         <th class="py-3 px-5">Class</th>

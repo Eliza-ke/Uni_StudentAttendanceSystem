@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css') }}">   
     <title>Attendance Record</title>
 </head>
@@ -13,9 +14,9 @@
   <div class="bg-slate-50 h-screen">
   <div>
     <ul class="bg-violet-50 m-0 list-none overflow-hidden">
-        <li class="float-left"><a href="/student/profile" class="navi">Your Profile</a></li>
-        <li class="float-left"><a href="/student/attendance" class="navi">Attendance</a></li>
-        <li class="float-right"><a href="/student/logout" class="navi">Logout</a></li>
+        <li class="float-left"><a href="/student/profile" class="navi"><i class="fa-solid fa-id-badge mx-2 text-lg"></i>Profile</a></li>
+        <li class="float-left"><a href="/student/attendance" class="navi"><i class="fa-solid fa-clipboard-list mx-1 text-lg"></i>Attendance</a></li>
+        <li class="float-right"><a href="/student/logout" class="navi"><i class="fa-solid fa-right-from-bracket mx-2"></i>Logout</a></li>
     </ul>
     <div id="toastContainer"></div>
   </div>
@@ -71,6 +72,7 @@
     </div>
   </div>
 </div>
+    <script src="https://kit.fontawesome.com/17311876a1.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='javascript/attendance.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='javascript/index.js') }}"></script>
   </body>

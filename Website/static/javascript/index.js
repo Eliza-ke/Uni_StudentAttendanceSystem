@@ -1,14 +1,14 @@
 function ToggleNav() {
   var togglenav = document.getElementById("mySidenav");
-  if (togglenav.style.width === "210px") {
+  if (togglenav.style.width === "220px") {
     closeNav();
   } else {
     openNav();
   }
 }
 function openNav() {
-  document.getElementById("mySidenav").style.width = "210px";
-  document.getElementById("main").style.marginLeft = "210px";
+  document.getElementById("mySidenav").style.width = "220px";
+  document.getElementById("main").style.marginLeft = "220px";
 }
 
 function closeNav() {

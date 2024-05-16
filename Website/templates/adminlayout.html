@@ -13,16 +13,14 @@
       href="{{ url_for('static', filename='css/index.css') }}"
     />
     <!-- Font Awesome -->
-    
-
     <title>{% block title %}{% endblock %}</title>
   </head>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
   <body>
-    <div id="mySidenav" class="sidenav bg-violet-900 pt-1 text-white text-center">
-      <div class="px-3 py-4" style="border-bottom: 1px solid rgba(255, 255, 255, 0.504)">
-        <div class="float-left ">
+    <div id="mySidenav" class="sidenav bg-violet-950 pt-3 text-white text-center overflow-hidden">
+      <div class="py-3 px-2 flex flex-row justify-center" style="border-bottom: 1px solid rgba(255, 255, 255, 0.504)">
+        <div class="m-1">
           <img class="w-10 h-10 rounded-full object-cover" src="{{ url_for('static', filename='images/' + session.get('admin')['admin_profile']) }}" alt="user photo">
         </div>
         <div>
@@ -32,18 +30,50 @@
           </div>
         </div>
       </div>
-      <a href="/adminDashboard">Dashboard</a>
+      <a href="/adminDashboard">
+        <div class="flex justify-center gap-2 items-center">
+          <i class="fa-solid fa-chart-pie mx-1 text-xl"></i>
+          <p>Dashboard</p>
+        </div>
+      </a>
       {% if session.get('admin')['admin_rolecode'] == 'S1001' %}
-        <a href="/adminfacultyInfo">Faculty Info</a>
+        <a href="/adminfacultyInfo">
+          <div class="flex justify-center gap-2 items-center">
+            <i class="fa-solid fa-user-tie"></i>
+            <p>Faculty Info</p>
+          </div>
+        </a>
       {% endif %}
-      <a href="/adminstudentInfo">Student Info</a>
-      <a href="/adminyearInfo">Class</a>
-      <a href="/adminperiodInfo">Period</a>
-      <a href="/adminattendanceInfo">Attendance</a>
+      <a href="/adminstudentInfo">
+        <div class="flex justify-center gap-2 items-center">
+            <i class="fa-solid fa-users mx-1 text-md"></i>
+            <p>Student Info</p>
+        </div>
+    </a>
+    <a href="/adminattendanceInfo">
+        <div class="flex justify-center gap-2 items-center">
+            <i class="fa-solid fa-clipboard-list mx-1 text-lg"></i>
+            <p>Attendance</p>
+        </div>
+    </a>
+    <a href="/adminyearInfo">
+        <div class="flex justify-center gap-2 items-center">
+            <i class="fa-solid fa-people-roof mx-1"></i>
+            <p>Class</p>
+        </div>
+    </a>
+    <a href="/adminperiodInfo">
+        <div class="flex justify-center gap-2 items-center">
+            <i class="fa-solid fa-calendar-days mx-1"></i>
+            <p>Period</p>
+        </div>
+    </a>
+    
     </div>
 
     <div id="main" class="bg-slate-50">
       <div class="top-0 w-full sticky">
+
         <ul class="p-1 bg-violet-900 text-white flex justify-between items-center list-none overflow-hidden">
           <div>
           <li class="mx-2 text-white flex flex-row justify-center items-center">
@@ -58,8 +88,8 @@
         <div>
           <li class="mx-2"> 
             <button id="dropdownHoverButton" data-dropdown-toggle="dropdownHover" data-dropdown-trigger="hover" class="text-white hover:text-violet-50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-violet-600 dark:hover:bg-violet-700 " type="button">
-              <img class="w-8 h-8 mx-2 rounded-full object-cover" src="{{ url_for('static', filename='images/' + session.get('admin')['admin_profile']) }}" alt="user photo">
-                <p class="text-sm">
+              <i class="fa-solid fa-user text-md mx-2"></i>
+              <p class="text-sm">
                   {% if session.get('admin')['admin_rolecode'] == 'S1001' %}
                   System Admin
                   {% else %}
@@ -71,11 +101,11 @@
               <div id="dropdownHover" class="z-10 hidden bg-slate-50 divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
                   <ul class="py-2 text-sm text-black dark:text-gray-200" aria-labelledby="dropdownHoverButton">
                     <li>
-                      <a href="/adminProfile" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Profile</a>
+                      <a href="/adminProfile" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"><i class="fa-solid fa-id-badge mx-2 text-lg"></i>Profile</a>
                     </li>
                   
                     <li>
-                      <a href="/signout" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sign out</a>
+                      <a href="/signout" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"><i class="fa-solid fa-right-from-bracket mx-2"></i>Sign out</a>
                     </li>
                   </ul>
               </div>

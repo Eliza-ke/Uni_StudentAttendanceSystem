@@ -72,7 +72,7 @@ def adminlogin():
                         }
                 session['admin_id'] = admin.id
                 session['admin'] = myadmin
-                return jsonify(success=True, redirect=url_for('adminStudentInfo'))
+                return jsonify(success=True, redirect=url_for('adminDashboard'))
             else:
                 return jsonify(success=False, message='Incorrect Password')
         else:
@@ -121,7 +121,7 @@ def adminsignup():
                 session['admin_id'] = admin.id
                 session['admin'] = myadmin
 
-                return jsonify(success=True, redirect=url_for('adminStudentInfo'))
+                return jsonify(success=True, redirect=url_for('adminDashboard'))
 
             elif rolecode == "S1001": #system admin code
                 profileImg = "defaultprofile.png"
@@ -139,7 +139,7 @@ def adminsignup():
                 session['admin_id'] = admin.id
                 session['admin'] = myadmin
   
-                return jsonify(success=True, redirect=url_for('adminStudentInfo'))
+                return jsonify(success=True, redirect=url_for('adminDashboard'))
             else:
                 return jsonify(success= False, message='Incorrect role code')
                 

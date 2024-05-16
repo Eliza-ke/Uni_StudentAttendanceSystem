@@ -27,7 +27,7 @@ def stRegister():
 @app.route('/student/attendance', methods=['GET', 'POST'])
 def stattendance():
     if 'student_id' not in session:
-        return redirect(url_for('stLogin'))
+        return redirect(url_for('home'))
     else:
         return attendance()
 
@@ -35,7 +35,7 @@ def stattendance():
 @app.route('/student/profile', methods=['GET', 'POST'])
 def studentProfile():
     if 'student_id' not in session:
-        return redirect(url_for('stLogin'))
+        return redirect(url_for('home'))
     else:
         return studentprofile()
 
@@ -43,7 +43,7 @@ def studentProfile():
 @app.route('/student/updateprofile', methods=['GET', 'POST'])
 def updatedProfile():
     if 'student_id' not in session:
-        return redirect(url_for('stLogin'))
+        return redirect(url_for('home'))
     else:
         return updateProfile()
 
@@ -104,7 +104,7 @@ def updateyearInfo(yid):
         return updateyearinfo(yid)
 
 
-@app.route('/deleteyearInfo/<int:yid>', methods=['GET', 'POST'])
+@app.route('/deleteyearInfo/<int:yid>', methods=['GET', 'POST', 'DELETE'])
 def deleteyearInfo(yid):
     if 'admin_id' not in session:
         return redirect(url_for('adminLogin'))

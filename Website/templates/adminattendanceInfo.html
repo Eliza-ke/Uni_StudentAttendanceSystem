@@ -1,11 +1,11 @@
 {% extends "adminlayout.html" %} {% block title %}Student Information{% endblock%} 
 {% block content %}
   
-  <div class="m-10 flex flex-col justify-center items-center bg-white">
+<div class="m-10 p-5 flex flex-col justify-center items-center bg-white overflow-x-auto">
  
   <h3 class="text-2xl font-semibold mt-5 mb-10 text-center">All Attendances</h3>
 
-  <div class="flex flex-row justify-center">
+  <div class="mb-5 flex flex-row justify-center">
     <select class="block h-10 px-2 border border-purple-400 text-purple-700 mx-3 p-2 rounded focus:outline-none focus:border-purple-800" name="year" id="year">
       <option value="">Class</option>
       {% for allyear in allyears %}
@@ -20,7 +20,7 @@
 
     <a href="/notLoginedStudent" class="h-10 p-2 ml-3 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 focus:outline-none focus:bg-yellow-600">No logined Student</a>
   </div>
-  <table class="text-center mx-16 my-10 shadow-md">
+  <table class="text-center shadow-md">
     <thead class="bg-violet-50 text-lg font-semibold">
       <tr>
         <th class=" py-3 px-5">Student Name</th>
