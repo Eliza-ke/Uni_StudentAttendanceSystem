@@ -8,7 +8,6 @@
     <table class="text-center mx-16 my-10 shadow-md">
     <thead class="bg-violet-50 text-lg font-semibold">
         <tr>
-            <th class="py-3 px-5">ID</th>
             <th class="py-3 px-5">Class Name</th>
             <th class="py-3 px-5" colspan="2">Action</th>
         </tr>
@@ -16,7 +15,6 @@
     <tbody>
         {% for year in years %}
         <tr>
-            <td class="p-3">{{ year.id }}</td>
             <td class="p-3">{{ year.year_name }}</td>
             <td class="p-3"> 
                 <a id="updateYearBtn" class="mx-2 text-green-600 hover:scale-110 hover:text-green-500" onclick="updateData(this)" data-id-value="{{ year.id }}">
