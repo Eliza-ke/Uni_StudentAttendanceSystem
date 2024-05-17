@@ -4,7 +4,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from Website.models import Student, Admin
 from Website.config import db
 
-# student side  
+# Student Side  
 def studentLogin():
     if request.method == 'POST':
         emailogin = request.form.get('emailogin')
