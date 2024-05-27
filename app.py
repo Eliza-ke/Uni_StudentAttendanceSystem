@@ -68,6 +68,7 @@ def adminSignUp():
 @app.route('/adminlogout')
 def adminlogout():
     session.pop('admin_id', None)
+    session.pop('admin', None)
     return redirect(url_for('adminlogin'))
 
 # student information
